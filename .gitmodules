@@ -1,0 +1,9 @@
+[submodule "ogre"]
+	path = ogre
+	url = git@github.com:OGRECave/ogre.git
+[submodule "reactphysics3d"]
+	path = reactphysics3d
+	url = git@github.com:DanielChappuis/reactphysics3d.git
+[submodule "SDL"]
+	path = SDL
+	url = git@github.com:libsdl-org/SDL.git
