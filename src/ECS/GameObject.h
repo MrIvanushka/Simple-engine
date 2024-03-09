@@ -27,7 +27,7 @@ public:
 
     void setActive(bool value);
 
-    bool activeSelf() const;
+    bool activeSelf() const { return _isActive; }
     std::shared_ptr<Transform> transform() const { return _transform; }
 
     template<typename T>

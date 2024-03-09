@@ -7,3 +7,6 @@
 [submodule "SDL"]
 	path = SDL
 	url = git@github.com:libsdl-org/SDL.git
+[submodule "glm"]
+	path = glm
+	url = git@github.com:g-truc/glm.git

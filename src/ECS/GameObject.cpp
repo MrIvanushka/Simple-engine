@@ -10,6 +10,15 @@ void GameObject::start()
     }
 }
 
+void GameObject::setActive(bool value)
+{
+    if (value != _isActive)
+    {
+        _isActive = value;
+        _transform->handleActivityChange(value);
+    }
+}
+
 void GameObject::update(float deltaTime)
 {
     if(_isActive) 
