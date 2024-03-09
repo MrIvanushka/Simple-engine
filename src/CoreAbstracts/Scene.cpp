@@ -9,8 +9,9 @@ void Scene::start()
     {
         object->start();
     }
-    _graphicsProcessor->onSceneStarted(_sceneObjects);
-    _physicsProcessor->onSceneStarted(_sceneObjects);
+    _graphicsProcessor->onGraphicSceneStarted(_sceneObjects);
+    _physicsProcessor->onPhysicSceneStarted(_sceneObjects);
+    _inputProcessor->onInputSceneStarted(_sceneObjects);
 }
 
 void Scene::updateModel(float deltaTime)
@@ -23,12 +24,12 @@ void Scene::updateModel(float deltaTime)
 
 void Scene::updateGraphics(float deltaTime)
 {
-    _graphicsProcessor->update(deltaTime);
+    _graphicsProcessor->updateGraphics(deltaTime);
 }
 
 void Scene::updatePhysics(float deltaTime)
 {
-    _physicsProcessor->update(deltaTime);
+    _physicsProcessor->updatePhysics(deltaTime);
 }
 
 void Scene::instantiate(std::shared_ptr<GameObject> newObject)

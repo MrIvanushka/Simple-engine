@@ -25,8 +25,9 @@ public:
         _physicsProcessor(physicsProcessor), _graphicsProcessor(graphicsProcessor),
         _inputProcessor(inputProcessor), _scenes(scenes), _currentSceneIndex(0)
     {
-        _graphicsProcessor->initialize();
-        _physicsProcessor->initialize();
+        _graphicsProcessor->initializeGraphics();
+        _physicsProcessor->initializePhysics();
+        _inputProcessor->initializeInput();
         _scenes[_currentSceneIndex]->start();
     }
     void loadScene(unsigned newSceneIndex) override;

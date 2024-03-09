@@ -14,9 +14,9 @@ class IGraphicsProcessor
 public:
 	virtual ~IGraphicsProcessor() = default;
 
-	virtual void initialize() = 0;
-	virtual void onSceneStarted(std::vector<std::shared_ptr<GameObject>>& sceneObjects) = 0;
-	virtual void update(float deltaTime) = 0;
+	virtual void initializeGraphics() = 0;
+	virtual void onGraphicSceneStarted(std::vector<std::shared_ptr<GameObject>>& sceneObjects) = 0;
+	virtual void updateGraphics(float deltaTime) = 0;
 
 };
 

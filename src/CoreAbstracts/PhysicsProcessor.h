@@ -14,9 +14,9 @@ class IPhysicsProcessor
 public:
 	virtual ~IPhysicsProcessor() = default;
 
-	virtual void initialize() = 0;
-	virtual void onSceneStarted(std::vector<std::shared_ptr<GameObject>>& sceneObjects) = 0;
-	virtual void update(float deltaTime) = 0;
+	virtual void initializePhysics() = 0;
+	virtual void onPhysicSceneStarted(std::vector<std::shared_ptr<GameObject>>& sceneObjects) = 0;
+	virtual void updatePhysics(float deltaTime) = 0;
 
 };
 

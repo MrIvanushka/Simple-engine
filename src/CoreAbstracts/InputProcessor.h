@@ -14,8 +14,8 @@ class IInputProcessor
 public:
 	virtual ~IInputProcessor() = default;
 
-	virtual void initialize() = 0;
-	virtual void onSceneStarted(std::vector<std::shared_ptr<GameObject>>& sceneObjects) = 0;
+	virtual void initializeInput() = 0;
+	virtual void onInputSceneStarted(std::vector<std::shared_ptr<GameObject>>& sceneObjects) = 0;
 	virtual float deltaTime() = 0;
 };
 
