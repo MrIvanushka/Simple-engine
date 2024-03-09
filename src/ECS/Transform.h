@@ -1,6 +1,8 @@
 #ifndef ENGINE_TRANSFORM_H
 #define ENGINE_TRANSFORM_H
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include <memory>
 #include <set>
 
@@ -49,6 +51,8 @@ public:
 	virtual glm::vec3 scale() const = 0;
 private:
 	void handleActivityChange(bool value);
+
+	virtual void onActivityChange(bool value) {}
 	
 	void invokePositionChange();
 	void invokeRotationChange();

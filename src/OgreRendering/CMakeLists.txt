@@ -1,18 +1,30 @@
 project(OgreRendering)
 
+set ( Components
+	Components/DirectionalLight.h
+	Components/PointLight.h
+	Components/SpotLight.h
+	Components/Camera.h
+	Components/MeshRenderer.h
+)
+source_group ( Components FILES ${Components} )
+
 #add_library(${PROJECT_NAME} STATIC
 add_executable(${PROJECT_NAME}
 	main.cpp
 	OgreGraphicsProcessor.h
 	OgreGraphicsProcessor.cpp
+	OgreApp.h
+	OgreApp.cpp
+	OgreTransformImpl.h
+	OgreTransformImpl.cpp
+
+	${Components}
 )
 
 find_package(OGRE REQUIRED COMPONENTS Bites RTShaderSystem)
 
 file(COPY ${OGRE_CONFIG_DIR}/resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
-#link_directories(${OGRE_BIN_DIR})
-#include_directories(${OGRE_LIB_DIR})
 
 target_link_libraries(${PROJECT_NAME} 
 	PRIVATE CoreAbstracts
@@ -22,5 +34,4 @@ target_link_libraries(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
 	PUBLIC ../CoreAbstracts
-	#PUBLIC ../ECS
 )

@@ -3,7 +3,7 @@
 
 int main()
 {
-	std::shared_ptr<Engine::IGraphicsProcessor> pp = std::make_shared<OgreImpl::OgreSdlProcessor>();
+	std::shared_ptr<Engine::IGraphicsProcessor> pp = std::make_shared<OgreImpl::OgreGraphicsProcessor>();
 
 	pp->initializeGraphics();
 

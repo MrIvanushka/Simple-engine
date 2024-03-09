@@ -72,6 +72,7 @@ void Transform::handleActivityChange(bool value)
 	{
 		listener->handleActivityChange(value);
 	}
+	onActivityChange(value);
 }
 
 void Transform::invokePositionChange()

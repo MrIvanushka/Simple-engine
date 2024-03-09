@@ -3,12 +3,15 @@
 
 #include "GraphicsProcessor.h"
 #include "InputProcessor.h"
+#include "OgreApp.h"
 
 namespace OgreImpl
 {
 
-	class OgreSdlProcessor : public Engine::IGraphicsProcessor, public Engine::IInputProcessor
+	class OgreGraphicsProcessor : public Engine::IGraphicsProcessor, public Engine::IInputProcessor
 	{
+	private:
+		std::shared_ptr<OgreApp> _app;
 	public:
 		void initializeGraphics();
 		void onGraphicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects) override {}
