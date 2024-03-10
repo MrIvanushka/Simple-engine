@@ -16,6 +16,7 @@ namespace OgreImpl
 class OgreApp : public OgreBites::ApplicationContext, public OgreBites::InputListener
 {
     Ogre::SceneManager* _sceneManager;
+    bool _hasToRun = true;
 public:
     OgreApp(Ogre::String name) : OgreBites::ApplicationContext(name)
     {}
@@ -25,6 +26,8 @@ public:
     bool keyPressed(const OgreBites::KeyboardEvent& evt);
 
     void clear();
+
+    bool hasToRun() const { return _hasToRun; }
 
     void generateObjects(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects);
 };

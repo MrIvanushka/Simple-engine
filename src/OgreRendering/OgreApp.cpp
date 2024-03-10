@@ -14,7 +14,8 @@ bool OgreApp::keyPressed(const OgreBites::KeyboardEvent& evt)
 {
     if (evt.keysym.sym == OgreBites::SDLK_ESCAPE)
     {
-        getRoot()->queueEndRendering();
+        //getRoot()->queueEndRendering();
+        _hasToRun = false;
     }
     return true;
 }
