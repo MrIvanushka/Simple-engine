@@ -32,6 +32,8 @@ public:
     }
     void loadScene(unsigned newSceneIndex) override;
 
+    void run();
+private:
     void update();
     void render();
 };

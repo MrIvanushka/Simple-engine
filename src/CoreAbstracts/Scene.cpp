@@ -5,18 +5,19 @@ using namespace Engine;
 
 void Scene::start()
 {
-    for (auto object : _sceneObjects)
-    {
-        object->start();
-    }
     _graphicsProcessor->onGraphicSceneStarted(_sceneObjects);
     _physicsProcessor->onPhysicSceneStarted(_sceneObjects);
     _inputProcessor->onInputSceneStarted(_sceneObjects);
+
+    for (std::shared_ptr<Engine::GameObject> object : _sceneObjects)
+    {
+        object->start();
+    }
 }
 
 void Scene::updateModel(float deltaTime)
 {
-    for (auto object : _sceneObjects)
+    for (std::shared_ptr<Engine::GameObject> object : _sceneObjects)
     {
         object->update(deltaTime);
     }

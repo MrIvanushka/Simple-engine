@@ -17,6 +17,7 @@ public:
 	virtual void initializeInput() = 0;
 	virtual void onInputSceneStarted(std::vector<std::shared_ptr<GameObject>>& sceneObjects) = 0;
 	virtual float deltaTime() = 0;
+	virtual bool hasToRun() = 0;
 };
 
 }

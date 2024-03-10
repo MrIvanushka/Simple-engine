@@ -26,7 +26,7 @@ public:
         std::shared_ptr<IInputProcessor> inputProcessor) :
         _physicsProcessor(physicsProcessor), _graphicsProcessor(graphicsProcessor),
         _inputProcessor(inputProcessor)
-    { initialize(); }
+    {  }
 
     virtual ~Scene() = default;
 
@@ -37,8 +37,7 @@ public:
 
 protected:
     void instantiate(std::shared_ptr<GameObject> newObject);
-private:
-    virtual void initialize() = 0;
+
 };
 
 }
