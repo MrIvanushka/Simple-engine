@@ -6,6 +6,7 @@ using namespace Engine;
 
 void OgreGraphicsProcessor::initializeGraphics()
 {
+    _app = std::make_shared<OgreApp>("New application");
     _app->initApp();
     _app->getRoot()->startRendering();//??????
     _app->closeApp();

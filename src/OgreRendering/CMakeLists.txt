@@ -25,9 +25,9 @@ find_package(OGRE REQUIRED COMPONENTS Bites RTShaderSystem)
 file(COPY ${OGRE_CONFIG_DIR}/resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(${PROJECT_NAME} 
-	PRIVATE CoreAbstracts
-	PRIVATE OgreBites
-	PRIVATE OgreRTShaderSystem
+	PUBLIC CoreAbstracts
+	PUBLIC OgreBites
+	PUBLIC OgreRTShaderSystem
 )
 
 target_include_directories(${PROJECT_NAME}
