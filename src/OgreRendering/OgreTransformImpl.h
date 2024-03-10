@@ -1,5 +1,5 @@
-#ifndef OGREIMPL_APP_H
-#define OGREIMPL_APP_H
+#ifndef OGREIMPL_TRANSFORMIMPL_H
+#define OGREIMPL_TRANSFORMIMPL_H
 
 #include <Ogre.h>
 

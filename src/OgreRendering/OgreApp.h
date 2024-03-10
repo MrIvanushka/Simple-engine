@@ -8,17 +8,14 @@
 
 #include <vector>
 
-#include "Transform.h"
+#include "GameObject.h"
 
 namespace OgreImpl
 {
 
-class OgreTransformListener;
-
 class OgreApp : public OgreBites::ApplicationContext, public OgreBites::InputListener
 {
-private:
-    std::vector<std::shared_ptr<OgreTransformListener>> _movableObjects;
+    Ogre::SceneManager* _sceneManager;
 public:
     OgreApp(Ogre::String name) : OgreBites::ApplicationContext(name)
     {}

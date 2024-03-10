@@ -1,13 +1,14 @@
 #include "OgreApp.h"
 
-#include <Ogre.h>
-#include <OgreApplicationContext.h>
-#include "OgreRTShaderSystem.h"
-#include "OgreInput.h"
+#include "OgreTransformImpl.h"
+#include "Components/MeshRenderer.h"
+#include "Components/Camera.h"
+#include "Components/DirectionalLight.h"
+#include "Components/PointLight.h"
+#include "Components/SpotLight.h"
 
 using namespace OgreImpl;
 using namespace Engine;
-
 
 bool OgreApp::keyPressed(const OgreBites::KeyboardEvent& evt)
 {
@@ -20,37 +21,15 @@ bool OgreApp::keyPressed(const OgreBites::KeyboardEvent& evt)
 
 void OgreApp::setup(void)
 {
-    // do not forget to call the base first
     OgreBites::ApplicationContext::setup();
 
-    // register for input events
     addInputListener(this);
-    // get a pointer to the already created root
+
     Ogre::Root* root = getRoot();
-    Ogre::SceneManager* scnMgr = root->createSceneManager();
-    // register our scene with the RTSS
+    _sceneManager = root->createSceneManager();
+
     Ogre::RTShader::ShaderGenerator* shadergen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
-    shadergen->addSceneManager(scnMgr);
-    // without light we would just get a black screen    
-    Ogre::Light* light = scnMgr->createLight("MainLight");
-    Ogre::SceneNode* lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    lightNode->setPosition(0, 10, 15);
-    lightNode->attachObject(light);
-    // also need to tell where we are
-    Ogre::SceneNode* camNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    camNode->setPosition(0, 0, 15);
-    camNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
-    // create the camera
-    Ogre::Camera* cam = scnMgr->createCamera("myCam");
-    cam->setNearClipDistance(5); // specific to this sample
-    cam->setAutoAspectRatio(true);
-    camNode->attachObject(cam);
-    // and tell it to render into the main window
-    getRenderWindow()->addViewport(cam);
-    // finally something to render
-    Ogre::Entity* ent = scnMgr->createEntity("Sinbad.mesh");
-    Ogre::SceneNode* node = scnMgr->getRootSceneNode()->createChildSceneNode();
-    node->attachObject(ent);
+    shadergen->addSceneManager(_sceneManager);
 }
 
 void OgreApp::clear()
@@ -60,5 +39,59 @@ void OgreApp::clear()
 
 void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObjects)
 {
+    for (auto sceneObject : sceneObjects)
+    {
+        auto transform = std::dynamic_pointer_cast<OgreTransformImpl>(sceneObject->transform());
 
+        auto nodeRaw = _sceneManager->getRootSceneNode()->createChildSceneNode();
+        auto node = std::make_shared<Ogre::SceneNode>(*nodeRaw);
+
+        if (transform != nullptr)
+            transform->linkGraphics(node);
+        else
+            continue;
+
+        auto renderer = sceneObject->getComponent<MeshRenderer>();
+
+        if (renderer != nullptr)
+        {
+            auto entity = _sceneManager->createEntity(renderer->meshPath());
+            node->attachObject(entity);
+        }
+
+        auto camera = sceneObject->getComponent<Camera>();
+
+        if (camera != nullptr)
+        {
+            auto sceneCam = _sceneManager->createCamera("Camera");
+            sceneCam->setNearClipDistance(5); // specific to this sample
+            sceneCam->setAutoAspectRatio(true);
+            node->attachObject(sceneCam);
+            getRenderWindow()->addViewport(sceneCam);
+        }
+
+        auto directionalLight = sceneObject->getComponent<DirectionalLight>();
+
+        if (directionalLight != nullptr)
+        {
+            auto sceneLight = _sceneManager->createLight("DirectionalLight", Ogre::Light::LT_DIRECTIONAL);
+            node->attachObject(sceneLight);
+        }
+
+        auto pointLight = sceneObject->getComponent<PointLight>();
+
+        if (pointLight != nullptr)
+        {
+            auto sceneLight = _sceneManager->createLight("PointLight", Ogre::Light::LT_POINT);
+            node->attachObject(sceneLight);
+        }
+
+        auto spotLight = sceneObject->getComponent<SpotLight>();
+
+        if (spotLight != nullptr)
+        {
+            auto sceneLight = _sceneManager->createLight("SpotLight", Ogre::Light::LT_SPOTLIGHT);
+            node->attachObject(sceneLight);
+        }
+    }
 }

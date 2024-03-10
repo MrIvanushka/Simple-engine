@@ -9,9 +9,7 @@ set ( Components
 )
 source_group ( Components FILES ${Components} )
 
-#add_library(${PROJECT_NAME} STATIC
-add_executable(${PROJECT_NAME}
-	main.cpp
+add_library(${PROJECT_NAME} STATIC
 	OgreGraphicsProcessor.h
 	OgreGraphicsProcessor.cpp
 	OgreApp.h

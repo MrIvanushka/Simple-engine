@@ -11,7 +11,7 @@ void OgreGraphicsProcessor::initializeGraphics()
     _app->closeApp();
 }
 
-void onGraphicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects)
+void OgreGraphicsProcessor::onGraphicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects)
 {
-
+    _app->generateObjects(sceneObjects);
 }
