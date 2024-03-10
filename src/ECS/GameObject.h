@@ -39,11 +39,12 @@ public:
         this->_components.insert(std::make_shared<T>(this));
     }
     template<typename T>
-    T* getComponent() const
+    std::shared_ptr<T> getComponent() const
     {
-        for (Component* component : _components)
+        for (auto component : _components)
         {
-            T* typedComponent = dynamic_cast<T*>(component);
+            std::shared_ptr<T> typedComponent = std::dynamic_pointer_cast<T>(component);
+
             if (typedComponent != nullptr)
                 return typedComponent;
         }

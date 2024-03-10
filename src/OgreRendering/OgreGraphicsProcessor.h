@@ -14,7 +14,7 @@ namespace OgreImpl
 		std::shared_ptr<OgreApp> _app;
 	public:
 		void initializeGraphics();
-		void onGraphicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects) override {}
+		void onGraphicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects) override;
 		void updateGraphics(float deltaTime) override {}
 		float deltaTime() { return 0; }
 
