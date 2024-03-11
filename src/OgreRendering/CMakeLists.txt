@@ -1,9 +1,7 @@
 project(OgreRendering)
 
 set ( Components
-	Components/DirectionalLight.h
-	Components/PointLight.h
-	Components/SpotLight.h
+	Components/Light.h
 	Components/Camera.h
 	Components/MeshRenderer.h
 )

@@ -25,7 +25,7 @@ glm::quat castFrom(const Ogre::Quaternion& quat)
 
 void OgreTransformImpl::onActivityChange(bool value)
 {
-	//disable/enable SceneNode
+	_graphicsRef->flipVisibility();
 }
 
 void OgreTransformImpl::linkGraphics(std::shared_ptr<Ogre::SceneNode> graphicsRef)

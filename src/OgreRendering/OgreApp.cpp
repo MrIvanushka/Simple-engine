@@ -3,9 +3,7 @@
 #include "OgreTransformImpl.h"
 #include "Components/MeshRenderer.h"
 #include "Components/Camera.h"
-#include "Components/DirectionalLight.h"
-#include "Components/PointLight.h"
-#include "Components/SpotLight.h"
+#include "Components/Light.h"
 
 using namespace OgreImpl;
 using namespace Engine;
@@ -65,33 +63,17 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
         if (camera != nullptr)
         {
             auto sceneCam = _sceneManager->createCamera("Camera");
-            sceneCam->setNearClipDistance(5); // specific to this sample
-            sceneCam->setAutoAspectRatio(true);
+            camera->initializeSceneObject(std::make_shared<Ogre::Camera>(*sceneCam));
             node->attachObject(sceneCam);
             getRenderWindow()->addViewport(sceneCam);
         }
 
-        auto directionalLight = sceneObject->getComponent<DirectionalLight>();
+        auto light = sceneObject->getComponent<Light>();
 
-        if (directionalLight != nullptr)
+        if (light != nullptr)
         {
-            auto sceneLight = _sceneManager->createLight("DirectionalLight", Ogre::Light::LT_DIRECTIONAL);
-            node->attachObject(sceneLight);
-        }
-
-        auto pointLight = sceneObject->getComponent<PointLight>();
-
-        if (pointLight != nullptr)
-        {
-            auto sceneLight = _sceneManager->createLight("PointLight", Ogre::Light::LT_POINT);
-            node->attachObject(sceneLight);
-        }
-
-        auto spotLight = sceneObject->getComponent<SpotLight>();
-
-        if (spotLight != nullptr)
-        {
-            auto sceneLight = _sceneManager->createLight("SpotLight", Ogre::Light::LT_SPOTLIGHT);
+            auto sceneLight = _sceneManager->createLight("Light", light->type());
+            light->initializeSceneObject(std::make_shared<Ogre::Light>(*sceneLight));
             node->attachObject(sceneLight);
         }
     }
