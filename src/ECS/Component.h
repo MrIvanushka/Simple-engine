@@ -33,7 +33,7 @@ public:
     }
 
     template<typename T>
-    T* getComponent()
+    std::shared_ptr<T> getComponent()
     {
         return _gameObject->getComponent<T>();
     }

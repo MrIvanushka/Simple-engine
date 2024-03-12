@@ -16,6 +16,11 @@ void State::onEnable()
     start();
 }
 
+void State::onDisable()
+{
+    end();
+}
+
 void State::updateAll(float deltaTime)
 {
     for(auto transition : _transitions)

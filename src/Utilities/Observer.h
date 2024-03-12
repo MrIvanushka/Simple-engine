@@ -27,7 +27,7 @@ public:
 protected:
     void invoke()
     {
-        for (auto* o : observers) {
+        for (Observer* o : observers) {
             o->handle();
         }
     }
@@ -51,15 +51,15 @@ class ArgObservable
 {
 public:
     virtual ~ArgObservable() = default;
-    void Attach(ArgObserver<T>* o) { observers.insert(o); }
-    void Detach(ArgObserver<T>* o)
+    void Attach(ArgObserver<T>& o) { observers.insert(&o); }
+    void Detach(ArgObserver<T>& o)
     {
         observers.erase(o);
     }
 protected:
     void invoke(T arg)
     {
-        for (auto* o : observers) {
+        for (ArgObserver<T>* o : observers) {
             o->handle(arg);
         }
     }

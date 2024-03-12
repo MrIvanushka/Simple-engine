@@ -21,6 +21,7 @@ public:
     virtual ~State() = default;
 
     void onEnable();
+    void onDisable();
 
     void updateAll(float deltaTime);
 
@@ -29,6 +30,7 @@ public:
     bool needTransit(std::shared_ptr<Transition>& completedTransition);
 private:
     virtual void start() {}
+    virtual void end() {}
 
     virtual void update(float deltaTime) {}
 
