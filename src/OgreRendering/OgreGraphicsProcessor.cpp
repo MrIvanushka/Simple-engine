@@ -7,7 +7,6 @@ void OgreGraphicsProcessor::initializeGraphics()
 {
     _app = std::make_shared<OgreApp>("New application");
     _app->initApp();
-    _applicationIsRunning = true;
 }
 
 void OgreGraphicsProcessor::onGraphicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects)

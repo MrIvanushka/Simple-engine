@@ -17,6 +17,10 @@ list(APPEND CMAKE_PREFIX_PATH "C:/Packages/ogre-release/include/OGRE/Bites")
 list(APPEND CMAKE_PREFIX_PATH "C:/Packages/ogre-release/include/OGRE/RTShaderSystem")
 list(APPEND CMAKE_PREFIX_PATH "C:/Packages/ogre-release/CMake")
 
+list(APPEND CMAKE_PREFIX_PATH "C:/Packages/reactphysics3d-release")
+list(APPEND CMAKE_PREFIX_PATH "C:/Packages/reactphysics3d-release/include")
+list(APPEND CMAKE_PREFIX_PATH "C:/Packages/reactphysics3d-release/lib")
+
 if( CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR )
 	set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_BIN)
 	set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_LIB)
