@@ -20,11 +20,23 @@ private:
 	float _linearFactor = 0.5;
 	float _quadricFactor = 0.5;
 public:
+	Light(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
+
 	void initializeSceneObject(std::shared_ptr<Ogre::Light> sceneObject)
 	{
 		_sceneObject = sceneObject;
 
 		setAttenuation();
+	}
+
+	void onEnable() override
+	{
+		_sceneObject->setVisible(true);
+	}
+
+	void onDisable() override
+	{
+		_sceneObject->setVisible(false);
 	}
 
 	void setType(Ogre::Light::LightTypes type) { _type = type;  if (_sceneObject != nullptr) _sceneObject->setType(type); }

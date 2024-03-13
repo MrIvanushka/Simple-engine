@@ -12,9 +12,28 @@ class MeshRenderer : public Engine::Component
 {
 private:
 	std::string _meshPath;
+
+	std::shared_ptr<Ogre::Entity> _sceneObject;
 public:
+	MeshRenderer(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
+
 	void initialize(std::string meshPath) { _meshPath = meshPath; }
 	
+	void onEnable() override
+	{
+		_sceneObject->setVisible(true);
+	}
+
+	void onDisable() override
+	{
+		_sceneObject->setVisible(false);
+	}
+
+	void initializeSceneObject(std::shared_ptr<Ogre::Entity> sceneObject)
+	{
+		_sceneObject = sceneObject;
+	}
+
 	std::string meshPath() const { return _meshPath; }
 };
 

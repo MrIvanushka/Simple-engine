@@ -17,6 +17,8 @@ private:
 	float _nearClipDistance = 0;
 	float _fov = 60;
 public:
+	Camera(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
+
 	void initializeSceneObject(std::shared_ptr<Ogre::Camera> sceneObject)
 	{
 		_sceneObject = sceneObject;
