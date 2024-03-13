@@ -16,6 +16,9 @@ void GameObject::setActive(bool value)
     {
         _isActive = value;
         _transform->handleActivityChange(value);
+
+        for (auto component : _components)
+            component->switchEnabledByParent(value);
     }
 }
 

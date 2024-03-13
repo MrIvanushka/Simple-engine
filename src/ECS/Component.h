@@ -11,7 +11,7 @@ namespace Engine
 
 class Component
 {
-protected:
+private:
     std::shared_ptr<GameObject> _gameObject;
     bool                        _enabled;
 public:
@@ -22,14 +22,39 @@ public:
     }
     virtual ~Component() = default;
 
+    virtual void                onEnable() {}
+    virtual void                onDisable() {}
     virtual void                start() {}
     virtual void                update(float deltaTime) {}
     virtual void                render() {}
-    std::shared_ptr<GameObject> getGameObject() { return _gameObject; }
+    std::shared_ptr<GameObject> gameObject() { return _gameObject; }
+
+    void switchEnabled(bool enabled)
+    {
+        if (enabled && !_enabled)
+        {
+            _enabled = true;
+            onEnable();
+        }
+        else if (!enabled && _enabled)
+        {
+            _enabled = false;
+            onDisable();
+        }
+
+    }
+
+    void switchEnabledByParent(bool enabled)
+    {
+        if (enabled && !_enabled)
+            onEnable();
+        else if (!enabled && _enabled)
+            onDisable();
+    }
 
     bool isEnabled()
     {
-        return _enabled && _gameObject->activeSelf();
+        return _enabled;
     }
 
     template<typename T>
