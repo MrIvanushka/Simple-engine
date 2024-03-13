@@ -1,6 +1,9 @@
 #ifndef REACTIMPL_PHYSICS_PROC_H
 #define REACTIMPL_PHYSICS_PROC_H
 
+#include <reactphysics3d/reactphysics3d.h>
+#include <memory>
+
 #include "PhysicsProcessor.h"
 
 namespace ReactPhysicsImpl
@@ -9,7 +12,8 @@ namespace ReactPhysicsImpl
 	class ReactPhysicsProcessor : public Engine::IPhysicsProcessor
 	{
 	private:
-		
+		reactphysics3d::PhysicsCommon _physicsCommon;
+		reactphysics3d::PhysicsWorld* _world;
 	public:
 		void initializePhysics() override;
 
