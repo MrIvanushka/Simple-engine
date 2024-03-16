@@ -11,8 +11,15 @@ namespace ReactPhysicsImpl
 
 class BoxCollider : public ReactPhysicsImpl::Collider
 {
+private:
+    reactphysics3d::CollisionShape* _shape;
 public:
     BoxCollider(std::shared_ptr<Engine::GameObject> obj) : Collider(obj) { }
+
+    void initialize(reactphysics3d::Collider* physicObject) override
+    {
+        Collider::initialize(physicObject);
+    }
 };
 
 }

@@ -13,7 +13,7 @@ namespace ReactPhysicsImpl
 class Rigidbody : public Engine::Component
 {
 private:
-    std::shared_ptr<reactphysics3d::RigidBody> _physicObject;
+    reactphysics3d::RigidBody* _physicObject;
 
     reactphysics3d::BodyType _type;
 
@@ -25,7 +25,7 @@ private:
 public:
     Rigidbody(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
 
-    void initialize(std::shared_ptr<reactphysics3d::RigidBody> physicObject)
+    void initialize(reactphysics3d::RigidBody* physicObject)
     {
         _physicObject = physicObject;
 

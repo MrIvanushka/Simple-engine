@@ -11,7 +11,7 @@ namespace OgreImpl
 class Camera : public Engine::Component
 {
 private:
-	std::shared_ptr<Ogre::Camera> _sceneObject;
+	Ogre::Camera* _sceneObject;
 
 	float _farClipDistance = 100;
 	float _nearClipDistance = 0;
@@ -19,7 +19,7 @@ private:
 public:
 	Camera(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
 
-	void initializeSceneObject(std::shared_ptr<Ogre::Camera> sceneObject)
+	void initializeSceneObject(Ogre::Camera* sceneObject)
 	{
 		_sceneObject = sceneObject;
 

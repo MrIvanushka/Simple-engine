@@ -13,7 +13,7 @@ class OgreTransformImpl final : public Engine::Transform
 private:
 	bool _linkGfx = false;
 
-	std::shared_ptr<Ogre::SceneNode> _graphicsRef;
+	Ogre::SceneNode* _graphicsRef;
 
 	glm::vec3 _localPos;
 	glm::quat _localRot;
@@ -23,11 +23,11 @@ public:
 	OgreTransformImpl(glm::vec3 localPos, glm::quat localRot, glm::vec3 localScale, std::shared_ptr<Transform> parent) :
 		_localPos(localPos), _localRot(localRot), _localScale(localScale), _parent(parent) {}
 
-	void linkGraphics(std::shared_ptr<Ogre::SceneNode> graphicsRef);
+	void linkGraphics(Ogre::SceneNode* graphicsRef);
 
 	void changeParent(std::shared_ptr<Transform> newParent) override;
 
-	std::shared_ptr<Ogre::SceneNode> graphics() { return _graphicsRef; }
+	Ogre::SceneNode* graphics() { return _graphicsRef; }
 
 	glm::vec3 localPosition() const override;
 	glm::quat localRotation() const override;

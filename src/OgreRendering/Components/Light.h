@@ -13,7 +13,7 @@ class Light : public Engine::Component
 private:
 	Ogre::Light::LightTypes _type = Ogre::Light::LT_DIRECTIONAL;
 
-	std::shared_ptr<Ogre::Light> _sceneObject;
+	Ogre::Light* _sceneObject;
 
 	float _range = 10;
 	float _intensity = 1;
@@ -22,7 +22,7 @@ private:
 public:
 	Light(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
 
-	void initializeSceneObject(std::shared_ptr<Ogre::Light> sceneObject)
+	void initializeSceneObject(Ogre::Light* sceneObject)
 	{
 		_sceneObject = sceneObject;
 

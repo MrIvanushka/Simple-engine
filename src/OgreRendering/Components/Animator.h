@@ -48,7 +48,7 @@ class AnimationClip
         }
     };
 private:
-    std::shared_ptr<Ogre::AnimationState> _ogreAnimation;
+    Ogre::AnimationState* _ogreAnimation;
     std::vector<EventPair> _events;
 
     float _previousCallTime;
@@ -56,7 +56,7 @@ private:
     float _speed;
     float _blendFactor;
 public:
-    AnimationClip(std::shared_ptr<Ogre::AnimationState> ogreAnimation, float speed, float blendFactor) :
+    AnimationClip(Ogre::AnimationState* ogreAnimation, float speed, float blendFactor) :
         _ogreAnimation(ogreAnimation), _previousCallTime(0), _speed(speed), _blendFactor(blendFactor) {}
 
     float duration() const { return _ogreAnimation->getLength(); }

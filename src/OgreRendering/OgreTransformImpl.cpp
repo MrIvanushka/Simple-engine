@@ -28,7 +28,7 @@ void OgreTransformImpl::onActivityChange(bool value)
 	_graphicsRef->flipVisibility();
 }
 
-void OgreTransformImpl::linkGraphics(std::shared_ptr<Ogre::SceneNode> graphicsRef)
+void OgreTransformImpl::linkGraphics(Ogre::SceneNode* graphicsRef)
 {
 	_graphicsRef = graphicsRef;
 
@@ -41,14 +41,14 @@ void OgreTransformImpl::linkGraphics(std::shared_ptr<Ogre::SceneNode> graphicsRe
 
 void OgreTransformImpl::changeParent(std::shared_ptr<Transform> newParent)
 {
-	_graphicsRef->getParent()->removeChild(_graphicsRef.get());
+	_graphicsRef->getParent()->removeChild(_graphicsRef);
 
 	if (newParent != nullptr)
 	{
 		auto parent = std::dynamic_pointer_cast<OgreTransformImpl>(newParent);
 
 		if (parent != nullptr)
-			parent->graphics()->addChild(_graphicsRef.get());
+			parent->graphics()->addChild(_graphicsRef);
 	}
 	_graphicsRef->setInheritOrientation(true);
 	_graphicsRef->setInheritScale(true);

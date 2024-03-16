@@ -42,8 +42,7 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
     {
         auto transform = std::dynamic_pointer_cast<OgreTransformImpl>(sceneObject->transform());
 
-        auto nodeRaw = _sceneManager->getRootSceneNode()->createChildSceneNode();
-        auto node = std::make_shared<Ogre::SceneNode>(*nodeRaw);
+        auto node = _sceneManager->getRootSceneNode()->createChildSceneNode();
 
         if (transform != nullptr)
             transform->linkGraphics(node);
@@ -63,7 +62,7 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
         if (camera != nullptr)
         {
             auto sceneCam = _sceneManager->createCamera("Camera");
-            camera->initializeSceneObject(std::make_shared<Ogre::Camera>(*sceneCam));
+            camera->initializeSceneObject(sceneCam);
             node->attachObject(sceneCam);
             getRenderWindow()->addViewport(sceneCam);
         }
@@ -73,7 +72,7 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
         if (light != nullptr)
         {
             auto sceneLight = _sceneManager->createLight("Light", light->type());
-            light->initializeSceneObject(std::make_shared<Ogre::Light>(*sceneLight));
+            light->initializeSceneObject(sceneLight);
             node->attachObject(sceneLight);
         }
     }

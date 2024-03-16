@@ -13,7 +13,7 @@ class MeshRenderer : public Engine::Component
 private:
 	std::string _meshPath;
 
-	std::shared_ptr<Ogre::Entity> _sceneObject;
+	Ogre::Entity* _sceneObject;
 public:
 	MeshRenderer(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
 
@@ -29,7 +29,7 @@ public:
 		_sceneObject->setVisible(false);
 	}
 
-	void initializeSceneObject(std::shared_ptr<Ogre::Entity> sceneObject)
+	void initializeSceneObject(Ogre::Entity* sceneObject)
 	{
 		_sceneObject = sceneObject;
 	}
