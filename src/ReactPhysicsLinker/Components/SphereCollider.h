@@ -9,11 +9,26 @@
 namespace ReactPhysicsImpl
 {
 
-    class SphereCollider : public ReactPhysicsImpl::Collider
+class SphereCollider : public ReactPhysicsImpl::Collider
+{
+private:
+    reactphysics3d::SphereShape* _shape;
+
+    float _radius = 1;
+public:
+    SphereCollider(std::shared_ptr<Engine::GameObject> obj) : Collider(obj) { }
+
+    void initialize(reactphysics3d::Collider* collider, reactphysics3d::SphereShape* shape)
     {
-    public:
-        SphereCollider(std::shared_ptr<Engine::GameObject> obj) : Collider(obj) { }
-    };
+        _shape = shape;
+        _shape->setRadius(_radius);
+        Collider::initialize(collider);
+    }
+
+    void setRadius(float value) { if (_shape) _shape->setRadius(value); else _radius = value; }
+
+    float radius() const { _shape->getRadius(); }
+};
 
 }
 

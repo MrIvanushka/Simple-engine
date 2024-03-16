@@ -13,18 +13,17 @@ namespace ReactPhysicsImpl
 	class PhysicsTransformListener : public Engine::ITransformListener
 	{
 	private:
-		reactphysics3d::Transform*					_physicTransform;
+		std::shared_ptr<reactphysics3d::Transform>	_physicTransform;
 		std::shared_ptr<Engine::Transform>			_observable;
 	public:
-		PhysicsTransformListener(reactphysics3d::Transform* physicTransform,
-			std::shared_ptr<Engine::Transform> observable) :
-			_physicTransform(physicTransform), _observable(observable)
-		{}
+		PhysicsTransformListener(std::shared_ptr<Engine::Transform> observable);
 
 		void handleActivityChange(bool activeSelf) override;
 		void handlePositionChange() override;
 		void handleRotationChange() override;
 		void handleScaleChange() override {}
+
+		std::shared_ptr<reactphysics3d::Transform>	physicTransform() { return _physicTransform; }
 	};
 
 }

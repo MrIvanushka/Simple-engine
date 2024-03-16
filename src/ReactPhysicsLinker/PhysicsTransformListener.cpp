@@ -12,6 +12,12 @@ reactphysics3d::Quaternion castTo(const glm::quat & quat)
 	return reactphysics3d::Quaternion(quat.x, quat.y, quat.z, quat.w);
 }
 
+PhysicsTransformListener::PhysicsTransformListener(std::shared_ptr<Engine::Transform> observable) :
+	_observable(observable)
+{
+	_physicTransform = std::make_shared<reactphysics3d::Transform>(castTo(_observable->position()), castTo(_observable->rotation()));
+}
+
 void PhysicsTransformListener::handleActivityChange(bool activeSelf)
 {
 

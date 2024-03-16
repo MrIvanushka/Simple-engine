@@ -5,22 +5,25 @@
 #include <memory>
 
 #include "PhysicsProcessor.h"
+#include "PhysicsTransformListener.h"
 
 namespace ReactPhysicsImpl
 {
 
-	class ReactPhysicsProcessor : public Engine::IPhysicsProcessor
-	{
-	private:
-		reactphysics3d::PhysicsCommon _physicsCommon;
-		reactphysics3d::PhysicsWorld* _world;
-	public:
-		void initializePhysics() override;
+class ReactPhysicsProcessor : public Engine::IPhysicsProcessor
+{
+private:
+	reactphysics3d::PhysicsCommon _physicsCommon;
+	reactphysics3d::PhysicsWorld* _world;
 
-		void onPhysicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects) override;
+	std::vector<std::shared_ptr<PhysicsTransformListener>> _transformListeners;
+public:
+	void initializePhysics() override;
 
-		void updatePhysics(float deltaTime) override;
-	};
+	void onPhysicSceneStarted(std::vector<std::shared_ptr<Engine::GameObject>>& sceneObjects) override;
+
+	void updatePhysics(float deltaTime) override;
+};
 
 }
 

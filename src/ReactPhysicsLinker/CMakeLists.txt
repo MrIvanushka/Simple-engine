@@ -8,7 +8,6 @@ set ( Components
 	Components/MeshCollider.h
 	Components/BoxCollider.h
 	Components/SphereCollider.h
-	Components/CapsuleCollider.h
 )
 source_group ( Components FILES ${Components} )
 

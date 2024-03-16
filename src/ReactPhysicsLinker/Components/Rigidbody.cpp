@@ -36,8 +36,8 @@ void ReactPhysicsImpl::Rigidbody::setAngularLockAxisFactor(glm::vec3 axisFactor)
 
 void ReactPhysicsImpl::Rigidbody::update(float deltaTime)
 {
-	_gameObject->transform()->setPosition(castFrom(_physicObject->getTransform().getPosition()));
-	_gameObject->transform()->setRotation(castFrom(_physicObject->getTransform().getOrientation()));
+	gameObject()->transform()->setPosition(castFrom(_physicObject->getTransform().getPosition()));
+	gameObject()->transform()->setRotation(castFrom(_physicObject->getTransform().getOrientation()));
 }
 
 void ReactPhysicsImpl::Rigidbody::setVelocity(glm::vec3 velocity)
