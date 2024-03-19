@@ -12,19 +12,13 @@ namespace ReactPhysicsImpl
     class Collider : public Engine::Component
     {
     private:
-        reactphysics3d::Collider* _physicObject;
+        reactphysics3d::Collider* _physicObject = nullptr;
 
         bool _isTrigger = false;
     public:
         Collider(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
 
-        virtual void initialize(reactphysics3d::Collider* physicObject)
-        {
-            _physicObject = physicObject;
-            _physicObject->setIsTrigger(_isTrigger);
-        }
-
-        void setIsTrigger(bool value) { if (_physicObject != nullptr) _physicObject->setIsTrigger(value); else _isTrigger = isTrigger; }
+        void setIsTrigger(bool value) { if (_physicObject != nullptr) _physicObject->setIsTrigger(value); else _isTrigger = value; }
 
         bool isTrigger() const { if (_physicObject != nullptr) return _physicObject->getIsTrigger(); else return _isTrigger; }
 

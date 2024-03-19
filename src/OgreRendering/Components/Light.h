@@ -13,7 +13,7 @@ class Light : public Engine::Component
 private:
 	Ogre::Light::LightTypes _type = Ogre::Light::LT_DIRECTIONAL;
 
-	Ogre::Light* _sceneObject;
+	Ogre::Light* _sceneObject = nullptr;
 
 	float _range = 10000000;
 	float _intensity = 1;

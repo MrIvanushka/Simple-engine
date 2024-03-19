@@ -3,7 +3,7 @@
 
 using namespace ReactPhysicsImpl;
 
-reactphysics3d::Vector3 castTo(const glm::vec3& vec)
+reactphysics3d::Vector3 castToVec(const glm::vec3& vec)
 {
 	return reactphysics3d::Vector3(vec.x, vec.y, vec.z);
 }
@@ -21,17 +21,17 @@ glm::quat castFrom(const reactphysics3d::Quaternion& quat)
 void ReactPhysicsImpl::Rigidbody::setLinearLockAxisFactor(glm::vec3 axisFactor)
 {
 	if (_physicObject == nullptr)
-		_linearLockAxisFactor = castTo(axisFactor);
+		_linearLockAxisFactor = castToVec(axisFactor);
 	else
-		_physicObject->setLinearLockAxisFactor(castTo(axisFactor));
+		_physicObject->setLinearLockAxisFactor(castToVec(axisFactor));
 }
 
 void ReactPhysicsImpl::Rigidbody::setAngularLockAxisFactor(glm::vec3 axisFactor)
 {
 	if (_physicObject == nullptr)
-		_angularLockAxisFactor = castTo(axisFactor);
+		_angularLockAxisFactor = castToVec(axisFactor);
 	else
-		_physicObject->setAngularLockAxisFactor(castTo(axisFactor));
+		_physicObject->setAngularLockAxisFactor(castToVec(axisFactor));
 }
 
 void ReactPhysicsImpl::Rigidbody::update(float deltaTime)
@@ -42,12 +42,12 @@ void ReactPhysicsImpl::Rigidbody::update(float deltaTime)
 
 void ReactPhysicsImpl::Rigidbody::setVelocity(glm::vec3 velocity)
 {
-	_physicObject->setLinearVelocity(castTo(velocity));
+	_physicObject->setLinearVelocity(castToVec(velocity));
 }
 
 void ReactPhysicsImpl::Rigidbody::setAngularVelocity(glm::vec3 angularVelocity)
 {
-	_physicObject->setAngularVelocity(castTo(angularVelocity));
+	_physicObject->setAngularVelocity(castToVec(angularVelocity));
 }
 
 glm::vec3 ReactPhysicsImpl::Rigidbody::linearLockAxisFactor()  const { return castFrom(_physicObject->getLinearLockAxisFactor()); }

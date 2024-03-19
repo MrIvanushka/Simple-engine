@@ -12,7 +12,7 @@ namespace ReactPhysicsImpl
 class SphereCollider : public ReactPhysicsImpl::Collider
 {
 private:
-    reactphysics3d::SphereShape* _shape;
+    reactphysics3d::SphereShape* _shape = nullptr;
 
     float _radius = 1;
 public:

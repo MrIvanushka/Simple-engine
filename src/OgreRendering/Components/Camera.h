@@ -11,7 +11,7 @@ namespace OgreImpl
 class Camera : public Engine::Component
 {
 private:
-	Ogre::Camera* _sceneObject;
+	Ogre::Camera* _sceneObject = nullptr;
 
 	float _farClipDistance = 10000;
 	float _nearClipDistance = 5;

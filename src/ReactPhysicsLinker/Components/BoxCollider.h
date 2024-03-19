@@ -12,7 +12,7 @@ namespace ReactPhysicsImpl
 class BoxCollider : public ReactPhysicsImpl::Collider
 {
 private:
-    reactphysics3d::BoxShape* _shape;
+    reactphysics3d::BoxShape* _shape = nullptr;
 
     glm::vec3 _halfExtents;
 public:

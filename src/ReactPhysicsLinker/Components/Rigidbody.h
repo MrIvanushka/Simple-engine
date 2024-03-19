@@ -13,12 +13,12 @@ namespace ReactPhysicsImpl
 class Rigidbody : public Engine::Component
 {
 private:
-    reactphysics3d::RigidBody* _physicObject;
+    reactphysics3d::RigidBody* _physicObject = nullptr;
 
-    reactphysics3d::BodyType _type;
+    reactphysics3d::BodyType _type = reactphysics3d::BodyType::DYNAMIC;
 
-    float _mass;
-    bool _useGravity;
+    float _mass = 1;
+    bool _useGravity = true;
 
     reactphysics3d::Vector3 _linearLockAxisFactor;
     reactphysics3d::Vector3 _angularLockAxisFactor;

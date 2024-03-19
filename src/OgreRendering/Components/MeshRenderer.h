@@ -11,9 +11,9 @@ namespace OgreImpl
 class MeshRenderer : public Engine::Component
 {
 private:
-	std::string _meshPath;
+	std::string _meshPath = "";
 
-	Ogre::Entity* _sceneObject;
+	Ogre::Entity* _sceneObject = nullptr;
 public:
 	MeshRenderer(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
 

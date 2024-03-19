@@ -12,7 +12,7 @@ namespace Engine
 
 class Component;
 
-class GameObject final
+class GameObject final : public  std::enable_shared_from_this<GameObject>
 {
 private:
     bool                                    _isActive = true;
@@ -36,7 +36,7 @@ public:
         if (this->getComponent<T>() != nullptr)
             throw std::logic_error("GameObject already contains component that you are trying to add.");
 
-        this->_components.insert(std::make_shared<T>(this));
+        this->_components.insert(std::make_shared<T>(shared_from_this()));
     }
     template<typename T>
     std::shared_ptr<T> getComponent() const

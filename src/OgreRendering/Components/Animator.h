@@ -17,8 +17,8 @@ namespace OgreImpl
 class Animator : public Engine::Component
 {
 private:
-    std::shared_ptr<MeshRenderer> _renderer;
-    std::shared_ptr<Engine::StateMachine> _stateMachine;
+    std::shared_ptr<MeshRenderer> _renderer = nullptr;
+    std::shared_ptr<Engine::StateMachine> _stateMachine = nullptr;
 public:
     Animator(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
 
@@ -48,7 +48,7 @@ class AnimationClip
         }
     };
 private:
-    Ogre::AnimationState* _ogreAnimation;
+    Ogre::AnimationState* _ogreAnimation = nullptr;
     std::vector<EventPair> _events;
 
     float _previousCallTime;
