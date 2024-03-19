@@ -53,7 +53,7 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
 
         if (renderer != nullptr)
         {
-            auto entity = _sceneManager->createEntity("Sinbad.mesh");//renderer->meshPath());
+            auto entity = _sceneManager->createEntity(renderer->meshPath());
             node->attachObject(entity);
         }
 

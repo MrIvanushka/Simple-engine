@@ -15,7 +15,7 @@ private:
 
 	Ogre::Light* _sceneObject;
 
-	float _range = 100000;
+	float _range = 10000000;
 	float _intensity = 1;
 	float _linearFactor = 0;
 	float _quadricFactor = 0;
