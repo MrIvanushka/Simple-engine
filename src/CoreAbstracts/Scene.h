@@ -12,28 +12,18 @@
 namespace Engine
 {
 
-class Scene
-{
-private:
-    std::shared_ptr<IPhysicsProcessor> _physicsProcessor;
-    std::shared_ptr<IGraphicsProcessor> _graphicsProcessor;
-    std::shared_ptr<IInputProcessor> _inputProcessor;
+    class Scene
+    {
+    private:
+        std::vector<std::shared_ptr<GameObject>> _sceneObjects;
+    public:
 
-    std::vector<std::shared_ptr<GameObject>> _sceneObjects;
-public:
-    Scene(std::shared_ptr<IPhysicsProcessor> physicsProcessor,
-        std::shared_ptr<IGraphicsProcessor> graphicsProcessor,
-        std::shared_ptr<IInputProcessor> inputProcessor) :
-        _physicsProcessor(physicsProcessor), _graphicsProcessor(graphicsProcessor),
-        _inputProcessor(inputProcessor)
-    {  }
+        virtual ~Scene() = default;
 
-    virtual ~Scene() = default;
+        void start();
+        void update(float deltaTime);
 
-    void start();
-    void updateModel(float deltaTime);
-    void updateGraphics(float deltaTime);
-    void updatePhysics(float deltaTime);
+        std::vector<std::shared_ptr<GameObject>> sceneObjects() { return _sceneObjects; }
 
 protected:
     void instantiate(std::shared_ptr<GameObject> newObject);

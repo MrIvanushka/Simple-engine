@@ -3,6 +3,7 @@
 
 #include "Scene.h"
 #include "ISceneLoader.h"
+#include <chrono>
 
 namespace Engine
 {
@@ -28,14 +29,11 @@ public:
         _graphicsProcessor->initializeGraphics();
         _physicsProcessor->initializePhysics();
         _inputProcessor->initializeInput();
-        _scenes[_currentSceneIndex]->start();
     }
     void loadScene(unsigned newSceneIndex) override;
 
     void run();
-private:
-    void update();
-    void render();
+
 };
 
 }
