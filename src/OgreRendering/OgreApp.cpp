@@ -47,13 +47,13 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
         if (transform != nullptr)
             transform->linkGraphics(node);
         else
-            continue;
+            throw std::exception();
 
         auto renderer = sceneObject->getComponent<MeshRenderer>();
 
         if (renderer != nullptr)
         {
-            auto entity = _sceneManager->createEntity(renderer->meshPath());
+            auto entity = _sceneManager->createEntity("Sinbad.mesh");//renderer->meshPath());
             node->attachObject(entity);
         }
 
@@ -71,7 +71,7 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
 
         if (light != nullptr)
         {
-            auto sceneLight = _sceneManager->createLight("Light", light->type());
+            auto sceneLight = _sceneManager->createLight("Light");
             light->initializeSceneObject(sceneLight);
             node->attachObject(sceneLight);
         }

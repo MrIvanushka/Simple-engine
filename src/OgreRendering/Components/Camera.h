@@ -13,8 +13,8 @@ class Camera : public Engine::Component
 private:
 	Ogre::Camera* _sceneObject;
 
-	float _farClipDistance = 100;
-	float _nearClipDistance = 0;
+	float _farClipDistance = 10000;
+	float _nearClipDistance = 5;
 	float _fov = 60;
 public:
 	Camera(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
@@ -25,6 +25,7 @@ public:
 
 		_sceneObject->setFarClipDistance(_farClipDistance);
 		_sceneObject->setNearClipDistance(_nearClipDistance);
+		_sceneObject->setAutoAspectRatio(true);
 		_sceneObject->setFOVy(Ogre::Degree(_fov));
 	}
 

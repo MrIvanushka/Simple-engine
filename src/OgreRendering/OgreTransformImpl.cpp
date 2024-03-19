@@ -41,10 +41,10 @@ void OgreTransformImpl::linkGraphics(Ogre::SceneNode* graphicsRef)
 
 void OgreTransformImpl::changeParent(std::shared_ptr<Transform> newParent)
 {
-	_graphicsRef->getParent()->removeChild(_graphicsRef);
-
 	if (newParent != nullptr)
 	{
+		_graphicsRef->getParent()->removeChild(_graphicsRef);
+
 		auto parent = std::dynamic_pointer_cast<OgreTransformImpl>(newParent);
 
 		if (parent != nullptr)
