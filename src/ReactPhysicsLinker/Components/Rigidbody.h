@@ -17,7 +17,7 @@ private:
 
     reactphysics3d::BodyType _type = reactphysics3d::BodyType::DYNAMIC;
 
-    float _mass = 1;
+    float _mass = 100;
     bool _useGravity = true;
 
     reactphysics3d::Vector3 _linearLockAxisFactor;

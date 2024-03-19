@@ -32,7 +32,7 @@ public:
             _halfExtents = value;
     }
 
-    glm::vec3 halfExtents() const { _shape->getHalfExtents(); }
+    glm::vec3 halfExtents() const { if (_shape != nullptr) return glm::vec3(_shape->getHalfExtents().x, _shape->getHalfExtents().y, _shape->getHalfExtents().z); else return _halfExtents; }
 };
 
 }

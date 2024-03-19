@@ -35,8 +35,8 @@ void ReactPhysicsProcessor::onPhysicSceneStarted(std::vector<std::shared_ptr<Eng
 
             if (boxCollider != nullptr)
             {
-                auto shape = _physicsCommon.createBoxShape(reactphysics3d::Vector3(1.,1.,1.));
-                auto collider = rb->addCollider(shape, *newListener->physicTransform());
+                auto shape = _physicsCommon.createBoxShape(reactphysics3d::Vector3(boxCollider->halfExtents().x, boxCollider->halfExtents().y, boxCollider->halfExtents().z));
+                auto collider = rb->addCollider(shape, Transform::identity());
                 boxCollider->initialize(collider, shape);
             }
 
@@ -45,7 +45,7 @@ void ReactPhysicsProcessor::onPhysicSceneStarted(std::vector<std::shared_ptr<Eng
             if (sphereCollider != nullptr)
             {
                 auto shape = _physicsCommon.createSphereShape(1.);
-                auto collider = rb->addCollider(shape, *newListener->physicTransform());
+                auto collider = rb->addCollider(shape, Transform::identity());
                 sphereCollider->initialize(collider, shape);
             }
         }

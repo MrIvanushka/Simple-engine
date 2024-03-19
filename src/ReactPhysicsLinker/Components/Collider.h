@@ -26,7 +26,9 @@ namespace ReactPhysicsImpl
         void initialize(reactphysics3d::Collider* physicObject)
         {
             _physicObject = physicObject;
+
             _physicObject->setIsTrigger(_isTrigger);
+     
         }
     };
 
