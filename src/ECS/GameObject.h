@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "Transform.h"
+#include "Input.h"
 
 namespace Engine
 {
@@ -17,9 +18,11 @@ class GameObject final : public  std::enable_shared_from_this<GameObject>
 private:
     bool                                    _isActive = true;
     std::shared_ptr<Transform>              _transform;
+    std::shared_ptr<Input>                  _input;
     std::set<std::shared_ptr<Component>>    _components;
 public:
-    GameObject(std::shared_ptr<Transform> transform) : _transform(transform) {}
+    GameObject(std::shared_ptr<Transform> transform, std::shared_ptr<Input> input) : 
+        _transform(transform), _input(input) {}
 
     void start();
     void update(float deltaTime);
@@ -27,8 +30,9 @@ public:
 
     void setActive(bool value);
 
-    bool activeSelf() const { return _isActive; }
-    std::shared_ptr<Transform> transform() const { return _transform; }
+    bool                        activeSelf() const { return _isActive; }
+    std::shared_ptr<Transform>  transform() const { return _transform; }
+    std::shared_ptr<Input>      input() const { return _input; }
 
     template<typename T>
     void addComponent()

@@ -5,9 +5,7 @@
 #include <memory>
 
 #include "GameObject.h"
-#include "GraphicsProcessor.h"
-#include "InputProcessor.h"
-#include "PhysicsProcessor.h"
+#include "Input.h"
 
 namespace Engine
 {
@@ -17,6 +15,7 @@ namespace Engine
     private:
         std::vector<std::shared_ptr<GameObject>> _sceneObjects;
     public:
+        Scene(std::shared_ptr<Input> input) {}
 
         virtual ~Scene() = default;
 
@@ -27,7 +26,6 @@ namespace Engine
 
 protected:
     void instantiate(std::shared_ptr<GameObject> newObject);
-
 };
 
 }

@@ -13,7 +13,7 @@ void Game::loadScene(unsigned newSceneIndex)
     _inputProcessor->onInputSceneStarted(sceneObjects);
     _scenes[_currentSceneIndex]->start();
 }
-#include <iostream>
+
 void Game::run()
 {
     loadScene(0);
@@ -34,8 +34,6 @@ void Game::run()
         auto deltaTimeRaw = std::chrono::duration_cast<std::chrono::microseconds>(currentFrameTime - previousFrameTime).count();
         float deltaTime = deltaTimeRaw / 1000000.;
 
-        std::cout << "dt " << deltaTime << std::endl;
-
         timeSinceLastPhysicsUpdate += deltaTime;
 
         if (timeSinceLastPhysicsUpdate > PHYSICS_UPDATE_RATE)
@@ -45,6 +43,7 @@ void Game::run()
         }
 
         _scenes[_currentSceneIndex]->update(deltaTime);
+        _inputProcessor->updateInput(deltaTime);
         _graphicsProcessor->updateGraphics(deltaTime);
 
         previousFrameTime = currentFrameTime;

@@ -5,6 +5,10 @@
 #include "ISceneLoader.h"
 #include <chrono>
 
+#include "GraphicsProcessor.h"
+#include "PhysicsProcessor.h"
+#include "InputProcessor.h"
+
 namespace Engine
 {
 

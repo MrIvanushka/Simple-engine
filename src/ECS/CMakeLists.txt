@@ -7,6 +7,7 @@ add_library(ECS STATIC
 	Transform.h
 	Transform.cpp
 	ITransformListener.h
+	Input.h
 )
 
 target_link_libraries(${PROJECT_NAME}
