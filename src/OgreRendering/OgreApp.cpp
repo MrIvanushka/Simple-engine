@@ -10,6 +10,9 @@ using namespace Engine;
 
 bool OgreApp::keyPressed(const OgreBites::KeyboardEvent& evt)
 {
+    _pressedKeys.insert(static_cast<Engine::Key>(evt.keysym.sym));
+    _holdingKeys.insert(static_cast<Engine::Key>(evt.keysym.sym));
+
     if (evt.keysym.sym == OgreBites::SDLK_ESCAPE)
     {
         //getRoot()->queueEndRendering();
@@ -17,6 +20,68 @@ bool OgreApp::keyPressed(const OgreBites::KeyboardEvent& evt)
     }
     return true;
 }
+
+bool OgreApp::keyReleased(const OgreBites::KeyboardEvent& evt)
+{
+    _releasedKeys.insert(static_cast<Engine::Key>(evt.keysym.sym));
+    _holdingKeys.erase(static_cast<Engine::Key>(evt.keysym.sym));
+
+    return true;
+}
+
+bool OgreApp::mouseMoved(const OgreBites::MouseMotionEvent& evt)
+{
+    _mousePos = glm::vec2(evt.x, evt.y);
+    return true;
+}
+
+
+bool OgreApp::mousePressed(const OgreBites::MouseButtonEvent& evt)
+{
+    MouseButton pressedButton;
+
+    switch (evt.button)
+    {
+    case OgreBites::BUTTON_LEFT:
+        pressedButton = MouseButton::LEFT;
+        break;
+    case OgreBites::BUTTON_RIGHT:
+        pressedButton = MouseButton::RIGHT;
+        break;
+    case OgreBites::BUTTON_MIDDLE:
+        pressedButton = MouseButton::MIDDLE;
+        break;
+    }
+
+    _pressedButtons.insert(pressedButton);
+    _holdingButtons.insert(pressedButton);
+
+    return true;
+}
+
+bool OgreApp::mouseReleased(const OgreBites::MouseButtonEvent& evt)
+{
+    MouseButton pressedButton;
+
+    switch (evt.button)
+    {
+    case OgreBites::BUTTON_LEFT:
+        pressedButton = MouseButton::LEFT;
+        break;
+    case OgreBites::BUTTON_RIGHT:
+        pressedButton = MouseButton::RIGHT;
+        break;
+    case OgreBites::BUTTON_MIDDLE:
+        pressedButton = MouseButton::MIDDLE;
+        break;
+    }
+
+    _releasedButtons.insert(pressedButton);
+    _holdingButtons.erase(pressedButton);
+
+    return true;
+}
+
 
 void OgreApp::setup(void)
 {
@@ -34,6 +99,14 @@ void OgreApp::setup(void)
 void OgreApp::clear()
 {
 
+}
+
+void OgreApp::updateInputBuffers()
+{
+    _pressedKeys.clear();
+    _pressedButtons.clear();
+    _releasedKeys.clear();
+    _releasedButtons.clear();
 }
 
 void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObjects)

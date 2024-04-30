@@ -23,6 +23,11 @@ bool OgreGraphicsProcessor::hasToRun()
     return false;
 }
 
+void OgreGraphicsProcessor::updateInput(float deltaTime)
+{
+    _app->updateInputBuffers();
+}
+
 void OgreGraphicsProcessor::updateGraphics(float deltaTime)
 {
     _app->getRoot()->renderOneFrame();
