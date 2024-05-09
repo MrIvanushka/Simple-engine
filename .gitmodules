@@ -13,3 +13,6 @@
 [submodule "cegui"]
 	path = cegui
 	url = git@github.com:cegui/cegui.git
+[submodule "cegui-dependencies"]
+	path = cegui-dependencies
+	url = git@github.com:cegui/cegui-dependencies.git
