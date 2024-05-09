@@ -3,7 +3,7 @@
 
 using namespace Engine;
 
-void GameObject::start()
+void Entity::start()
 {
     for (auto component : _components) {
         component->start();
@@ -22,9 +22,9 @@ void GameObject::setActive(bool value)
     }
 }
 
-void GameObject::update(float deltaTime)
+void Entity::update(float deltaTime)
 {
-    if(_isActive) 
+    if(activeSelf()) 
     {
         for (auto component : _components)
         {
@@ -34,9 +34,9 @@ void GameObject::update(float deltaTime)
     }
 }
 
-void GameObject::render()
+void Entity::render()
 {
-    if(_isActive)
+    if(activeSelf())
     {
         for (auto component : _components) {
             if (component->isEnabled())

@@ -5,7 +5,7 @@ using namespace Engine;
 
 void Scene::start()
 {
-    for (std::shared_ptr<Engine::GameObject> object : _sceneObjects)
+    for (auto object : _sceneObjects)
     {
         object->start();
     }
@@ -13,13 +13,16 @@ void Scene::start()
 
 void Scene::update(float deltaTime)
 {
-    for (std::shared_ptr<Engine::GameObject> object : _sceneObjects)
+    for (auto object : _sceneObjects)
     {
         object->update(deltaTime);
     }
 }
 
-void Scene::instantiate(std::shared_ptr<GameObject> newObject)
+std::shared_ptr<GameObject> Scene::instantiate(std::shared_ptr<Transform> transform)
 {
-    _sceneObjects.push_back(newObject);
+    auto entity = std::make_shared<Entity>(transform, _input);
+    _sceneObjects.push_back(entity);
+    _sceneObjectsExp.push_back(entity);
+    return entity;
 }

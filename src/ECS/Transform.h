@@ -13,7 +13,7 @@
 
 namespace Engine
 {
-class GameObject;
+class Entity;
 
 class Transform
 {

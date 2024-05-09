@@ -15,6 +15,8 @@ private:
     std::shared_ptr<GameObject> _gameObject;
     bool                        _enabled;
 public:
+    friend class Entity;
+
     Component(std::shared_ptr<GameObject> object, bool enabledOnStart = true)
     {
         _enabled = enabledOnStart;
@@ -22,28 +24,25 @@ public:
     }
     virtual ~Component() = default;
 
-    virtual void                onEnable() {}
-    virtual void                onDisable() {}
-    virtual void                start() {}
-    virtual void                update(float deltaTime) {}
-    virtual void                render() {}
-    std::shared_ptr<GameObject> gameObject() { return _gameObject; }
-
     void switchEnabled(bool enabled)
     {
         if (enabled && !_enabled)
         {
             _enabled = true;
-            onEnable();
+            
+            if (_gameObject->activeSelf())
+                onEnable();
         }
         else if (!enabled && _enabled)
         {
             _enabled = false;
-            onDisable();
+
+            if(_gameObject->activeSelf())
+                onDisable();
         }
 
     }
-
+    
     void switchEnabledByParent(bool enabled)
     {
         if (enabled && !_enabled)
@@ -52,16 +51,21 @@ public:
             onDisable();
     }
 
-    bool isEnabled()
+    bool isEnabled() const
     {
         return _enabled;
     }
 
+    std::shared_ptr<Transform> transform() const { return _gameObject->transform(); }
+
     template<typename T>
-    std::shared_ptr<T> getComponent()
-    {
-        return _gameObject->getComponent<T>();
-    }
+    std::shared_ptr<T> getComponent() const { return _gameObject->getComponent<T>(); }
+private:
+    virtual void onEnable() {}
+    virtual void onDisable() {}
+    virtual void start() {}
+    virtual void update(float deltaTime) {}
+    virtual void render() {}
 };
 
 }

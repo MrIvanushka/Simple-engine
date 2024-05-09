@@ -10,22 +10,24 @@
 namespace Engine
 {
 
-    class Scene
-    {
-    private:
-        std::vector<std::shared_ptr<GameObject>> _sceneObjects;
-    public:
-        Scene(std::shared_ptr<Input> input) {}
+class Scene
+{
+private:
+    std::vector<std::shared_ptr<Entity>> _sceneObjects;
+    std::vector<std::shared_ptr<GameObject>> _sceneObjectsExp;
+    std::shared_ptr<Input>               _input;
+public:
+    Scene(std::shared_ptr<Input> input) : _input(input) {}
 
-        virtual ~Scene() = default;
+    virtual ~Scene() = default;
 
-        void start();
-        void update(float deltaTime);
+    void start();
+    void update(float deltaTime);
 
-        std::vector<std::shared_ptr<GameObject>> sceneObjects() { return _sceneObjects; }
+    const std::vector<std::shared_ptr<GameObject>>& sceneObjects() { return _sceneObjectsExp; }
 
 protected:
-    void instantiate(std::shared_ptr<GameObject> newObject);
+    std::shared_ptr<GameObject> instantiate(std::shared_ptr<Transform> transform);
 };
 
 }

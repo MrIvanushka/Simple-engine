@@ -13,20 +13,19 @@ namespace Engine
 
 class Component;
 
-class GameObject final : public  std::enable_shared_from_this<GameObject>
+class GameObject : public std::enable_shared_from_this<GameObject>
 {
+protected:
+    std::set<std::shared_ptr<Component>>    _components;
 private:
     bool                                    _isActive = true;
     std::shared_ptr<Transform>              _transform;
     std::shared_ptr<Input>                  _input;
-    std::set<std::shared_ptr<Component>>    _components;
 public:
-    GameObject(std::shared_ptr<Transform> transform, std::shared_ptr<Input> input) : 
+    GameObject(std::shared_ptr<Transform> transform, std::shared_ptr<Input> input) :
         _transform(transform), _input(input) {}
 
-    void start();
-    void update(float deltaTime);
-    void render();
+    virtual ~GameObject() = default;
 
     void setActive(bool value);
 
@@ -54,6 +53,18 @@ public:
         }
         return nullptr;
     }
+
+};
+
+class Entity final : public GameObject
+{
+public:
+    Entity(std::shared_ptr<Transform> transform, std::shared_ptr<Input> input) : 
+        GameObject(transform, input) {}
+
+    void start();
+    void update(float deltaTime);
+    void render();
 };
 
 }

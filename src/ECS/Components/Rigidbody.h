@@ -77,8 +77,8 @@ public:
 
     void update(float deltaTime) override
     {
-        gameObject()->transform()->setPosition(_physicObject->position());
-        gameObject()->transform()->setRotation(_physicObject->orientation());
+        transform()->setPosition(_physicObject->position());
+        transform()->setRotation(_physicObject->orientation());
     }
 
     void setVelocity(glm::vec3 velocity);
