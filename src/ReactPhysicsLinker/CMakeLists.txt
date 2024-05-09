@@ -1,15 +1,14 @@
 project(ReactPhysicsLinker)
 
 
-set ( Components
-	Components/Rigidbody.h
-	Components/Rigidbody.cpp
-	Components/Collider.h
-	Components/MeshCollider.h
-	Components/BoxCollider.h
-	Components/SphereCollider.h
+set ( ReactImpls
+	ReactImpls/ReactRigidbody.h
+	ReactImpls/ReactRigidbody.cpp
+	ReactImpls/ReactCollider.h
+	ReactImpls/ReactBoxShape.h
+	ReactImpls/ReactSphereShape.h
 )
-source_group ( Components FILES ${Components} )
+source_group ( ReactImpls FILES ${ReactImpls} )
 
 add_library(${PROJECT_NAME} STATIC
 	ReactPhysicsProcessor.h
@@ -18,7 +17,7 @@ add_library(${PROJECT_NAME} STATIC
 	PhysicsTransformListener.h
 	PhysicsTransformListener.cpp
 
-	${Components}
+	${ReactImpls}
 )
 
 find_package ( ReactPhysics3D REQUIRED )

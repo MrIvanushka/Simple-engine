@@ -1,13 +1,13 @@
 project(OgreRendering)
 
-set ( Components
-	Components/Light.h
-	Components/Camera.h
-	Components/MeshRenderer.h
-	Components/Animator.h
-	Components/Animator.cpp
+set ( OgreImpls
+	OgreImpls/OgreLight.h
+	OgreImpls/OgreCamera.h
+	OgreImpls/OgreMeshRenderer.h
+	OgreImpls/OgreAnimationClip.h
+	OgreImpls/OgreAnimationClip.cpp
 )
-source_group ( Components FILES ${Components} )
+source_group ( OgreImpls FILES ${OgreImpls} )
 
 add_library(${PROJECT_NAME} STATIC
 	OgreGraphicsProcessor.h
@@ -17,10 +17,11 @@ add_library(${PROJECT_NAME} STATIC
 	OgreTransformImpl.h
 	OgreTransformImpl.cpp
 
-	${Components}
+	${OgreImpls}
 )
 
 find_package(OGRE REQUIRED COMPONENTS Bites RTShaderSystem)
+#find_package(CEGUI REQUIRED)
 
 file(COPY ${OGRE_CONFIG_DIR}/resources.cfg DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -29,6 +30,8 @@ target_link_libraries(${PROJECT_NAME}
 	PUBLIC Utilities
 	PUBLIC OgreBites
 	PUBLIC OgreRTShaderSystem
+	#PUBLIC CEGUIBase-0
+	#PUBLIC CEGUIOgreRenderer-0
 )
 
 target_include_directories(${PROJECT_NAME}

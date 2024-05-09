@@ -1,8 +1,9 @@
 #include "ReactPhysicsProcessor.h"
 
-#include "Components/Rigidbody.h"
-#include "Components/BoxCollider.h"
-#include "Components/SphereCollider.h"
+#include "ReactImpls/ReactRigidbody.h"
+#include "ReactImpls/ReactBoxShape.h"
+#include "ReactImpls/ReactSphereShape.h"
+#include "ReactImpls/ReactCollider.h"
 
 using namespace ReactPhysicsImpl;
 using namespace reactphysics3d;
@@ -24,29 +25,29 @@ void ReactPhysicsProcessor::onPhysicSceneStarted(std::vector<std::shared_ptr<Eng
         auto newListener = std::make_shared<PhysicsTransformListener>(sceneObject->transform());
         _transformListeners.push_back(newListener);
 
-        auto rigidbody = sceneObject->getComponent<Rigidbody>();
+        auto rigidbody = sceneObject->getComponent<Engine::Rigidbody>();
 
         if (rigidbody != nullptr)
         {
             auto rb = _world->createRigidBody(*newListener->physicTransform());
-            rigidbody->initialize(rb);
+            rigidbody->initialize(std::make_shared<ReactRigidbody>(rb));
 
-            auto boxCollider = sceneObject->getComponent<BoxCollider>();
+            auto boxCollider = sceneObject->getComponent<Engine::BoxCollider>();
 
             if (boxCollider != nullptr)
             {
                 auto shape = _physicsCommon.createBoxShape(reactphysics3d::Vector3(boxCollider->halfExtents().x, boxCollider->halfExtents().y, boxCollider->halfExtents().z));
                 auto collider = rb->addCollider(shape, Transform::identity());
-                boxCollider->initialize(collider, shape);
+                boxCollider->initialize(std::make_shared<ReactCollider>(collider), std::make_shared<ReactBoxShape>(shape));
             }
 
-            auto sphereCollider = sceneObject->getComponent<SphereCollider>();
+            auto sphereCollider = sceneObject->getComponent<Engine::SphereCollider>();
 
             if (sphereCollider != nullptr)
             {
                 auto shape = _physicsCommon.createSphereShape(1.);
                 auto collider = rb->addCollider(shape, Transform::identity());
-                sphereCollider->initialize(collider, shape);
+                sphereCollider->initialize(std::make_shared<ReactCollider>(collider), std::make_shared<ReactSphereShape>(shape));
             }
         }
 	}

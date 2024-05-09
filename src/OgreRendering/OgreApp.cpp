@@ -1,9 +1,9 @@
 #include "OgreApp.h"
 
 #include "OgreTransformImpl.h"
-#include "Components/MeshRenderer.h"
-#include "Components/Camera.h"
-#include "Components/Light.h"
+#include "OgreImpls/OgreMeshRenderer.h"
+#include "OgreImpls/OgreCamera.h"
+#include "OgreImpls/OgreLight.h"
 
 using namespace OgreImpl;
 using namespace Engine;
@@ -122,30 +122,31 @@ void OgreApp::generateObjects(std::vector<std::shared_ptr<GameObject>>& sceneObj
         else
             throw std::exception();
 
-        auto renderer = sceneObject->getComponent<MeshRenderer>();
+        auto renderer = sceneObject->getComponent<Engine::MeshRenderer>();
 
         if (renderer != nullptr)
         {
             auto entity = _sceneManager->createEntity(renderer->meshPath());
+            renderer->initialize(std::make_shared<OgreMeshRenderer>(entity));
             node->attachObject(entity);
         }
 
-        auto camera = sceneObject->getComponent<Camera>();
+        auto camera = sceneObject->getComponent<Engine::Camera>();
 
         if (camera != nullptr)
         {
             auto sceneCam = _sceneManager->createCamera("Camera");
-            camera->initializeSceneObject(sceneCam);
+            camera->initialize(std::make_shared<OgreCamera>(sceneCam));
             node->attachObject(sceneCam);
             getRenderWindow()->addViewport(sceneCam);
         }
 
-        auto light = sceneObject->getComponent<Light>();
+        auto light = sceneObject->getComponent<Engine::Light>();
 
         if (light != nullptr)
         {
             auto sceneLight = _sceneManager->createLight("Light");
-            light->initializeSceneObject(sceneLight);
+            light->initialize(std::make_shared<OgreLight>(sceneLight));
             node->attachObject(sceneLight);
         }
     }
