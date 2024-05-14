@@ -11,7 +11,7 @@ namespace Engine
     class MeshCollider : public Collider
     {
     public:
-        MeshCollider(std::shared_ptr<GameObject> obj) : Collider(obj) { }
+        MeshCollider(std::shared_ptr<GameObject> obj, std::shared_ptr<Input> input) : Collider(obj, input) { }
     };
 
 }

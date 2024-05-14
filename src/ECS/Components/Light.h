@@ -46,7 +46,7 @@ private:
 	float _linearFactor = 0;
 	float _quadricFactor = 0;
 public:
-	Light(std::shared_ptr<GameObject> obj) : Component(obj) { }
+	Light(std::shared_ptr<GameObject> obj, std::shared_ptr<Input> input) : Component(obj, input) { }
 
 	void initialize(std::shared_ptr<ILight> implementation)
 	{

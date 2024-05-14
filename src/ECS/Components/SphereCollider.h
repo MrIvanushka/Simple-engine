@@ -25,7 +25,7 @@ private:
 
     float _radius = 1;
 public:
-    SphereCollider(std::shared_ptr<Engine::GameObject> obj) : Collider(obj) { }
+    SphereCollider(std::shared_ptr<Engine::GameObject> obj, std::shared_ptr<Input> input) : Collider(obj, input) { }
 
     void initialize(std::shared_ptr<ICollider> collider, std::shared_ptr<ISphereShape> shape)
     {

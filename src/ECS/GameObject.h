@@ -31,7 +31,6 @@ public:
 
     bool                        activeSelf() const { return _isActive; }
     std::shared_ptr<Transform>  transform() const { return _transform; }
-    std::shared_ptr<Input>      input() const { return _input; }
 
     template<typename T>
     void addComponent()
@@ -39,7 +38,7 @@ public:
         if (this->getComponent<T>() != nullptr)
             throw std::logic_error("GameObject already contains component that you are trying to add.");
 
-        this->_components.insert(std::make_shared<T>(shared_from_this()));
+        this->_components.insert(std::make_shared<T>(shared_from_this(), _input));
     }
     template<typename T>
     std::shared_ptr<T> getComponent() const

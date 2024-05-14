@@ -25,7 +25,7 @@ private:
 
 	std::shared_ptr<IMeshRenderer> _implementation = nullptr;
 public:
-	MeshRenderer(std::shared_ptr<GameObject> obj) : Component(obj) { }
+	MeshRenderer(std::shared_ptr<GameObject> obj, std::shared_ptr<Input> input) : Component(obj, input) { }
 
 	void initialize(std::string meshPath) { if(_meshPath == "") _meshPath = meshPath; }
 	

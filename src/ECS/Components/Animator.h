@@ -20,7 +20,7 @@ private:
     std::shared_ptr<MeshRenderer> _renderer = nullptr;
     std::shared_ptr<StateMachine> _stateMachine = nullptr;
 public:
-    Animator(std::shared_ptr<GameObject> obj) : Component(obj) { }
+    Animator(std::shared_ptr<GameObject> obj, std::shared_ptr<Input> input) : Component(obj, input) { }
 
     void start()
     {

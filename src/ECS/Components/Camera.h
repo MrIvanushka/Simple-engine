@@ -29,7 +29,7 @@ private:
 	float _nearClipDistance = 5;
 	float _fov = 60;
 public:
-	Camera(std::shared_ptr<GameObject> obj) : Component(obj) { }
+	Camera(std::shared_ptr<GameObject> obj, std::shared_ptr<Input> input) : Component(obj, input) { }
 
 	void initialize(std::shared_ptr<ICamera> sceneObject)
 	{

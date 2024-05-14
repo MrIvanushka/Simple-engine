@@ -25,7 +25,7 @@ private:
 
     glm::vec3 _halfExtents;
 public:
-    BoxCollider(std::shared_ptr<GameObject> obj) : Collider(obj) { }
+    BoxCollider(std::shared_ptr<GameObject> obj, std::shared_ptr<Input> input) : Collider(obj, input) { }
 
     void initialize(std::shared_ptr<ICollider> collider, std::shared_ptr<IBoxShape> shape)
     {

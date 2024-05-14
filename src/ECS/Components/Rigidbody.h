@@ -54,7 +54,7 @@ private:
     glm::vec3 _linearLockAxisFactor = glm::vec3();
     glm::vec3 _angularLockAxisFactor = glm::vec3();
 public:
-    Rigidbody(std::shared_ptr<GameObject> obj) : Component(obj) { }
+    Rigidbody(std::shared_ptr<GameObject> obj, std::shared_ptr<Input> input) : Component(obj, input) { }
 
     void initialize(std::shared_ptr<IRigidbody> physicObject)
     {
@@ -75,12 +75,6 @@ public:
 
     void switchGravity(bool enabled) { if (_physicObject == nullptr) _useGravity = enabled; else _physicObject->switchGravity(enabled); }
 
-    void update(float deltaTime) override
-    {
-        transform()->setPosition(_physicObject->position());
-        transform()->setRotation(_physicObject->orientation());
-    }
-
     void setVelocity(glm::vec3 velocity);
     void setAngularVelocity(glm::vec3 angularVelocity);
 
@@ -91,7 +85,12 @@ public:
     glm::vec3     angularLockAxisFactor() const { return _physicObject->angularLockAxisFactor(); }
     glm::vec3     velocity()              const { return _physicObject->velocity(); }
     glm::vec3     angularVelocity()       const { return _physicObject->angularVelocity(); }
-
+private:
+    void update(float deltaTime) override
+    {
+        transform()->setPosition(_physicObject->position());
+        transform()->setRotation(_physicObject->orientation());
+    }
 };
 
 }

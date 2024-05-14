@@ -25,7 +25,7 @@ namespace Engine
 
         bool _isTrigger = false;
     public:
-        Collider(std::shared_ptr<Engine::GameObject> obj) : Component(obj) { }
+        Collider(std::shared_ptr<Engine::GameObject> obj, std::shared_ptr<Input> input) : Component(obj, input) { }
 
         void setIsTrigger(bool value) { if (_physicObject != nullptr) _physicObject->setIsTrigger(value); else _isTrigger = value; }
 

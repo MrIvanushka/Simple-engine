@@ -14,13 +14,15 @@ class Component
 private:
     std::shared_ptr<GameObject> _gameObject;
     bool                        _enabled;
+    std::shared_ptr<Input>      _input;
 public:
     friend class Entity;
 
-    Component(std::shared_ptr<GameObject> object, bool enabledOnStart = true)
+    Component(std::shared_ptr<GameObject> object, std::shared_ptr<Input> input, bool enabledOnStart = true)
     {
         _enabled = enabledOnStart;
         _gameObject = object;
+        _input = input;
     }
     virtual ~Component() = default;
 
@@ -58,8 +60,12 @@ public:
 
     std::shared_ptr<Transform> transform() const { return _gameObject->transform(); }
 
+    std::shared_ptr<GameObject> gameObject() const { return _gameObject; }
+
     template<typename T>
     std::shared_ptr<T> getComponent() const { return _gameObject->getComponent<T>(); }
+protected:
+    std::shared_ptr<Input> input() const { return _input; }
 private:
     virtual void onEnable() {}
     virtual void onDisable() {}
