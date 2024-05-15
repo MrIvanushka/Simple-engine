@@ -15,11 +15,13 @@ namespace Engine
 {
 class Entity;
 
-class Transform
+class Transform : public std::enable_shared_from_this<GameObject>
 {
 private:
 	std::set<std::shared_ptr<ITransformListener>> _listeners;
 
+	std::set<std::shared_ptr<Transform>> _children;
+	std::shared_ptr<Transform> _parent;
 public:
 	friend class GameObject;
 
@@ -29,18 +31,21 @@ public:
 	void removeListener(std::shared_ptr<ITransformListener> listener);
 
 	void move(glm::vec3 delta);
-	virtual void rotate(glm::quat delta);
-	virtual void resize(glm::vec3 delta);
+	void rotate(glm::quat delta);
+	void resize(glm::vec3 delta);
 
-	virtual void setPosition(glm::vec3 newPos);
-	virtual void setRotation(glm::quat newRot);
-	virtual void setScale(glm::vec3 newScale);
+	void setPosition(glm::vec3 newPos);
+	void setRotation(glm::quat newRot);
+	void setScale(glm::vec3 newScale);
 
-	virtual void setLocalPosition(glm::vec3 newPos);
-	virtual void setLocalRotation(glm::quat newRot);
-	virtual void setLocalScale(glm::vec3 newScale);
+	void setLocalPosition(glm::vec3 newPos);
+	void setLocalRotation(glm::quat newRot);
+	void setLocalScale(glm::vec3 newScale);
 
-	virtual void changeParent(std::shared_ptr<Transform> newParent) = 0;
+	void changeParent(std::shared_ptr<Transform> newParent);
+
+	std::shared_ptr<Transform> parent() const { return _parent; }
+	const std::set<std::shared_ptr<Transform>>& children() const { return _children; }
 
 	virtual glm::vec3 localPosition() const = 0;
 	virtual glm::quat localRotation() const = 0;
@@ -57,6 +62,8 @@ private:
 	void invokePositionChange();
 	void invokeRotationChange();
 	void invokeScaleChange();
+
+	virtual void _changeParent(std::shared_ptr<Transform> newParent) = 0;
 
 	virtual void _move(glm::vec3 delta) = 0;
 	virtual void _rotate(glm::quat delta) = 0;

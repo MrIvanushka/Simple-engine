@@ -17,6 +17,7 @@ private:
     std::shared_ptr<Input>      _input;
 public:
     friend class Entity;
+    friend class GameObject;
 
     Component(std::shared_ptr<GameObject> object, std::shared_ptr<Input> input, bool enabledOnStart = true)
     {
@@ -44,14 +45,6 @@ public:
         }
 
     }
-    
-    void switchEnabledByParent(bool enabled)
-    {
-        if (enabled && !_enabled)
-            onEnable();
-        else if (!enabled && _enabled)
-            onDisable();
-    }
 
     bool isEnabled() const
     {
@@ -67,6 +60,14 @@ public:
 protected:
     std::shared_ptr<Input> input() const { return _input; }
 private:
+    void switchEnabledByParent(bool enabled)
+    {
+        if (enabled && !_enabled)
+            onEnable();
+        else if (!enabled && _enabled)
+            onDisable();
+    }
+
     virtual void onEnable() {}
     virtual void onDisable() {}
     virtual void start() {}

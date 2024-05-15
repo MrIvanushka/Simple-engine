@@ -66,6 +66,19 @@ void Transform::setLocalScale(glm::vec3 newScale)
 	invokeScaleChange();
 }
 
+void Transform::changeParent(std::shared_ptr<Transform> newParent)
+{
+	if (_parent != nullptr)
+		_parent->_children.erase(shared_from_this());
+
+	_changeParent(newParent);
+
+	_parent = newParent;
+
+	if (_parent != nullptr)
+		_parent->_children.insert(shared_from_this());
+}
+
 void Transform::handleActivityChange(bool value)
 {
 	for (auto& listener : _listeners)
