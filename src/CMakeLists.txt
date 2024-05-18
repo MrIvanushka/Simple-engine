@@ -1,5 +1,5 @@
 add_subdirectory ( CoreAbstracts )
-add_subdirectory ( ECS )
+add_subdirectory ( EC )
 add_subdirectory ( Navigation )
 add_subdirectory ( OgreRendering )
 add_subdirectory ( ReactPhysicsLinker )

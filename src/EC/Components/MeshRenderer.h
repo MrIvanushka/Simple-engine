@@ -18,9 +18,11 @@ public:
 	virtual void disable() = 0;
 };
 
+# define SerializeField /**/
+
 class MeshRenderer : public Component
 {
-private:
+private SerializeField:
 	std::string _meshPath = "";
 
 	std::shared_ptr<IMeshRenderer> _implementation = nullptr;

@@ -1,4 +1,4 @@
-project(ECS)
+project(EC)
 
 set(Components
 	Components/Animator.h
@@ -28,7 +28,7 @@ set(Transform
 )
 source_group(Transform FILES ${Transform})
 
-add_library(ECS STATIC
+add_library(${PROJECT_NAME} STATIC
 	${General}
 	${Transform}
 	${Components}

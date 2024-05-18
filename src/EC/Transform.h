@@ -15,7 +15,7 @@ namespace Engine
 {
 class Entity;
 
-class Transform : public std::enable_shared_from_this<GameObject>
+class Transform : public std::enable_shared_from_this<Transform>
 {
 private:
 	std::set<std::shared_ptr<ITransformListener>> _listeners;

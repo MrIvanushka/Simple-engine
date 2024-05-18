@@ -24,7 +24,7 @@ public:
     void start();
     void update(float deltaTime);
 
-    const std::vector<std::shared_ptr<GameObject>>& sceneObjects() { return _sceneObjectsExp; }
+    const std::vector<std::shared_ptr<GameObject>>& sceneObjects() const { return _sceneObjectsExp; }
 
 protected:
     std::shared_ptr<GameObject> instantiate(std::shared_ptr<Transform> transform);

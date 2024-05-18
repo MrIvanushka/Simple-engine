@@ -25,7 +25,7 @@ public:
 
 	void linkGraphics(Ogre::SceneNode* graphicsRef);
 
-	void changeParent(std::shared_ptr<Transform> newParent) override;
+	void _changeParent(std::shared_ptr<Transform> newParent) override;
 
 	Ogre::SceneNode* graphics() { return _graphicsRef; }
 

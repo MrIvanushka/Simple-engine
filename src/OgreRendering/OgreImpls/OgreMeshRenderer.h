@@ -30,6 +30,26 @@ public:
 	}
 };
 
+class OgreSubMeshRenderer : public Engine::IMeshRenderer
+{
+private:
+	Ogre::SubEntity* _sceneObject = nullptr;
+public:
+
+	OgreSubMeshRenderer(Ogre::SubEntity* sceneObject) : _sceneObject(sceneObject)
+	{}
+
+	void enable() override
+	{
+		_sceneObject->setVisible(true);
+	}
+
+	void disable() override
+	{
+		_sceneObject->setVisible(false);
+	}
+};
+
 }
 
 #endif //OGREIMPL_MESHRENDERER_H

@@ -39,7 +39,7 @@ void OgreTransformImpl::linkGraphics(Ogre::SceneNode* graphicsRef)
 	_graphicsRef->setScale(castTo(_localScale));
 }
 
-void OgreTransformImpl::changeParent(std::shared_ptr<Transform> newParent)
+void OgreTransformImpl::_changeParent(std::shared_ptr<Transform> newParent)
 {
 	if (newParent != nullptr)
 	{
